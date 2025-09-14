@@ -3,6 +3,7 @@ from .models import Book
 from django.views.generic.detail import DetailView
 from .models import Library
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout
 
