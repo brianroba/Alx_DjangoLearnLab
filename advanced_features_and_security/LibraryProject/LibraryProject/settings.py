@@ -115,3 +115,22 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+# SECURITY SETTINGS
+
+DEBUG = False  # Disable debug mode in production
+
+SECURE_BROWSER_XSS_FILTER = True  # Enables XSS protection in browsers
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents MIME-type sniffing
+X_FRAME_OPTIONS = 'DENY'  # Prevents clickjacking by disallowing framing
+
+CSRF_COOKIE_SECURE = True  # Ensures CSRF cookie is sent over HTTPS
+SESSION_COOKIE_SECURE = True  # Ensures session cookie is sent over HTTPS
+
+INSTALLED_APPS += ['csp']
+
+MIDDLEWARE += ['csp.middleware.CSPMiddleware']
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://trusted.cdn.com")
+CSP_STYLE_SRC = ("'self'", "https://trusted.cdn.com")
