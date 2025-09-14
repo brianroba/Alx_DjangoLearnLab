@@ -134,3 +134,11 @@ MIDDLEWARE += ['csp.middleware.CSPMiddleware']
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_SCRIPT_SRC = ("'self'", "https://trusted.cdn.com")
 CSP_STYLE_SRC = ("'self'", "https://trusted.cdn.com")
+
+# ✅ Enforce HTTPS redirects
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+
+# ✅ HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS for 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow site to be preloaded into browsers' HSTS lists
