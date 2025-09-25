@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, permissions
 from api.models import Book
 from api.serializers import BookSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+
 
 # Create your views here.
 # List all books
