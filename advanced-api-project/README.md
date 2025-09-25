@@ -66,3 +66,30 @@ You can use tools like **Postman** or **curl** to test each endpoint:
 #### Example: Get all books
 ```bash
 curl http://localhost:8000/api/books/
+
+## 🔍 Filtering, Searching, and Ordering
+
+The Book API supports flexible querying using filters, search, and ordering.
+
+### 📘 Filtering
+
+Filter books by:
+- `title`
+- `author` (by ID)
+- `publication_year`
+
+**Example**:
+
+
+### 🔍 Searching
+
+Search across book titles and author names:
+
+
+### ↕️ Ordering
+
+Order books by:
+- `title`
+- `publication_year`
+
+Use `-` before a field to reverse the order:
