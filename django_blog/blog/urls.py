@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import register_view, CustomLoginView, CustomLogoutView, profile, 
 PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView,
- CommentCreateView, CommentUpdateView, CommentDeleteView,
+CommentCreateView, CommentUpdateView, CommentDeleteView
 from django.contrib.auth import views as auth_views
 
 
