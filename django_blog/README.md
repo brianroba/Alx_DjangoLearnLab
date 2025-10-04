@@ -1,0 +1,26 @@
+# Blog Post Management Features
+
+## Features
+- List all blog posts
+- View single post detail
+- Create a new blog post (auth required)
+- Edit and delete posts (only by the author)
+
+## URL Routes
+- `/` → List of posts
+- `/posts/new/` → Create post
+- `/posts/<int:pk>/` → View post detail
+- `/posts/<int:pk>/edit/` → Edit post
+- `/posts/<int:pk>/delete/` → Delete post
+
+## Permissions
+- Anyone can view posts
+- Only logged-in users can create posts
+- Only authors can edit or delete their own posts
+
+## How to Test
+1. Log in as a registered user
+2. Try creating, editing, and deleting posts
+3. Log out and verify that create/edit/delete are hidden
+4. Try editing/deleting someone else’s post – should deny access
+
