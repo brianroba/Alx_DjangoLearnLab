@@ -15,6 +15,7 @@ from django.urls import reverse_lazy, reverse
 from .models import Comment, Post
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
 
@@ -29,6 +30,11 @@ def register_view(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
+
+
+@login_required
+def profile(request):
+    return render(request, 'blog/profile.html')
 
 # Login View (using built-in)
 class CustomLoginView(LoginView):
@@ -126,3 +132,24 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('post-detail', kwargs={'pk': self.object.post.pk})
+ 
+    # Search functionality
+    def search_posts(request):
+        query = request.GET.get('q', '')
+        results = []
+        if query:
+            results = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(tags__name__icontains=query)
+            ).distinct()
+        return render(request, 'blog/search_results.html', {'results': results, 'query': query})
+ 
+ class TaggedPostListView(ListView):
+    model = Post
+    template_name = 'blog/tagged_posts.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name__iexact=self.kwargs.get('tag_name'))
+
