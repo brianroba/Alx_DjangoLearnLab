@@ -16,6 +16,7 @@ from .models import Comment, Post
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from taggit.models import Tag
 
 # Create your views here.
 
@@ -145,11 +146,19 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             ).distinct()
         return render(request, 'blog/search_results.html', {'results': results, 'query': query})
  
- class TaggedPostListView(ListView):
+ class PostByTagListView(ListView):
     model = Post
-    template_name = 'blog/tagged_posts.html'
+    template_name = 'blog/posts_by_tag.html'  # create this template
     context_object_name = 'posts'
+    paginate_by = 10  # optional, for pagination
 
     def get_queryset(self):
-        return Post.objects.filter(tags__name__iexact=self.kwargs.get('tag_name'))
+        tag_slug = self.kwargs.get('tag_slug')
+        return Post.objects.filter(tags__slug=tag_slug).distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tag_slug = self.kwargs.get('tag_slug')
+        context['tag'] = Tag.objects.filter(slug=tag_slug).first()
+        return context
 
