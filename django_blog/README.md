@@ -45,3 +45,15 @@
 1. View a post → scroll to comments
 2. Fill the comment form and submit
 3. Use edit/delete links next to your own comments
+
+# Tags & Search Functionality
+
+## Tagging
+- Posts can be tagged using the `tags` field in the create/edit form.
+- Tags appear in the post detail view.
+- Clicking a tag shows all posts with that tag (`/tags/<tag_name>/`).
+
+## Search
+- Search bar is in the base template.
+- Users can search by title, content, or tag.
+- Results show matching posts (`/search/?q=keyword`).
