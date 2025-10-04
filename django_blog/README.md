@@ -24,3 +24,24 @@
 3. Log out and verify that create/edit/delete are hidden
 4. Try editing/deleting someone else’s post – should deny access
 
+# Comment Feature
+
+## Features
+- View all comments on a blog post
+- Add a comment (auth required)
+- Edit/Delete your own comments
+
+## URL Patterns
+- `/post/<post_id>/comments/new/` → Add comment
+- `/comment/<pk>/update/` → Edit comment
+- `/comment/<pk>/delete/` → Delete comment
+
+## Permissions
+- Only logged-in users can comment
+- Only comment authors can edit/delete
+- Comments are visible to everyone
+
+## How to Use
+1. View a post → scroll to comments
+2. Fill the comment form and submit
+3. Use edit/delete links next to your own comments
